@@ -57,6 +57,7 @@ def set_rating(point):
     point['rating'] = 100
 
 def add_new_point(new_point):
+    path_list = []
     set_time(new_point)
     set_rating(new_point)
     sql = " INSERT INTO Geo (Name, X, Y, Type, Descript, Rating, Time) VALUES (\'{}\', {}, {}, \'{}\', \'{}\', {}, {}) RETURNING id".format(
@@ -90,11 +91,23 @@ def add_new_point(new_point):
         data = [path['new_xy'], path['other_xy']]
         answer = get_google(data) if new_id != other_id else 0
 
-        print(path['new_id'], path['other_id'], answer)
+        path_list.append('"{%s,%s,%s}"' % (new_id, other_id, answer))
+        path_list.append('"{%s,%s,%s}"' % (other_id, new_id, answer)) if new_id != other_id else None
 
-        sql_insert = "INSERT INTO geo_distance (point_1, point_2, distance) VALUES ({}, {}, {})"
-        Sql.exec(query=sql_insert.format(new_id, other_id, answer))
-        Sql.exec(query=sql_insert.format(other_id, new_id, answer)) if new_id != other_id else None
+    data_insert = "'{%s}'" % ','.join(path_list)
+
+    sql_insert = """insert into geo_distance
+                      (point_1, point_2, distance)
+                    select
+                      t._data[1],
+                      t._data[2],
+                      t._data[3]
+                    from
+                      (
+                      select _un::integer[] _data from unnest({data_insert}::text[]) _un
+                      ) t
+                      """.format(data_insert=data_insert)
+    Sql.exec(sql_insert)
 
 
 if __name__ == '__main__':
