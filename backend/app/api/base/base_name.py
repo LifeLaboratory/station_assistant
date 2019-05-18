@@ -26,11 +26,22 @@ LOGO = "logo"
 UUID = "UUID"
 PAGE = "page"
 ID_NEWS = "id_news"
-
+ORIGIN_X = 'origin_x'
+ORIGIN_Y = 'origin_y'
+DESTINATION_X = 'destination_x'
+DESTINATION_Y = 'destination_y'
+TIME = 'time'
+PRIORITY = 'priority'
 
 ERROR_EXECUTE_DATABASE = "Fatal error: execute database"
 ERROR_CONNECT_DATABASE = "Error connect database"
-
+LIST_ARGS = {PRIORITY}
+FLOAT_ARGS = {ORIGIN_X,
+              ORIGIN_Y,
+              DESTINATION_X,
+              DESTINATION_X
+              }
+INT_ARGS = {TIME}
 STATUS_OK = 200
 STATUS_PARSE_DATA = 102
 STATUS_CONVERTER = 103
