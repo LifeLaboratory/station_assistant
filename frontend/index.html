@@ -3,8 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Station Assistant</title>
+    <style>
+        #filter_form {
+  position: absolute;
+  top:50px;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+}
+     
+        #marker_info {
+  position: absolute;
+  bottom: 50px;
+  right: 15px;
+  width:18%;
+  border: 3px solid #f1f1f1;
+}
+   
+    </style>
 </head>
 <body>
-<div id="map" style="width:1280px; height:720px"></div>
+<div id="filter_form" >
+    <form>
+        <p>Выберите ваши интересы:</p>
+        <div id="categories">
+        <div>
+          <input onClick="changeCategory('Все')" type="checkbox" id="Все" name="Все" checked>
+          <label for="Все">Все</label>
+        </div>
+        </div>
+    </form>
+</div>
+<div id="marker_info">
+    <div id="location_name"></div>
+    <div id="location_desc"></div>
+    <div id="rating"></div>
+    <div id="reviews"></div>
+</div>
+<div id="map" style="width:80%; height:720px"></div>
+
 </body>
 </html>
