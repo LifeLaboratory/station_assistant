@@ -12,6 +12,11 @@ class GeoRoute(BaseRouter):
                      names.DESTINATION_X, names.TIME, names.PRIORITY]
 
     def get(self):
-        self._read_args()
-        answer = GeoProcessor(self.data)
-        return answer, HEADER
+        try:
+            status = self._read_args()
+            if status:
+                return 400, HEADER
+            answer = GeoProcessor(self.data)
+            return answer, HEADER
+        except:
+            return 500, HEADER
