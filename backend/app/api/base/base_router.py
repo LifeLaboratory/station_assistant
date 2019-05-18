@@ -18,7 +18,10 @@ class BaseRouter(Resource):
             self._parser.add_argument(arg)
         self.data = self._parser.parse_args()
         for arg in self.args:
-            self.data[arg] = json.loads(self.data.get(arg))
+            try:
+                self.data[arg] = json.loads(self.data.get(arg))
+            except:
+                return 400
 
     def get(self):
         return "OK", 200, {'Access-Control-Allow-Origin': '*'}
