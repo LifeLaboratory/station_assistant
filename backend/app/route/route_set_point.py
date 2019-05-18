@@ -11,7 +11,7 @@ class RouteSetPoint(BaseRouter):
         self.args = self.args = [names.ORIGIN_X, names.ORIGIN_Y, names.TYPE, names.TIME, names.DESCRIPTION,
                                  names.DATETIME, names.TIME, names.RATING]
 
-    def get(self):
+    def post(self):
         self._read_args()
         add_new_point(self.data)
         return 'OK', HEADER
