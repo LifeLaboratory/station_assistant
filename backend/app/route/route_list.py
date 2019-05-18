@@ -3,6 +3,7 @@ from app.route.route_favicon import Favicon
 from app.route.route_register import Register
 from app.route.route_session import Session
 from app.route.route_geo import GeoRoute
+from app.route.route_geo_types import GeoTypesRoute
 from app.route.route_all_touch import AllTouch
 
 ROUTES = {
@@ -13,5 +14,6 @@ ROUTES = {
     Favicon: '/favicon.ico',
     Session: '/session',
     GeoRoute: '/geo',
+    GeoTypesRoute: '/geo_types',
     AllTouch: '/all_touch'
 }
