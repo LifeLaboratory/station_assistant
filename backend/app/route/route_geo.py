@@ -2,7 +2,7 @@
 from app.api.base import base_name as names
 from app.api.src.geo.processor import GeoProcessor
 from app.api.base.base_router import BaseRouter
-import json
+from app.config.config import HEADER
 
 
 class GeoRoute(BaseRouter):
@@ -14,4 +14,4 @@ class GeoRoute(BaseRouter):
     def get(self):
         self._read_args()
         answer = GeoProcessor(self.data)
-        return answer
+        return answer, HEADER

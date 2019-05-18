@@ -2,6 +2,7 @@
 from app.api.base import base_name as names
 from app.api.src.all_touch.processor import AllProcessor
 from app.api.base.base_router import BaseRouter
+from app.config.config import HEADER
 import json
 
 
@@ -14,4 +15,4 @@ class AllTouch(BaseRouter):
     def get(self):
         #self._read_args()
         answer = AllProcessor(self.data)
-        return answer
+        return answer, HEADER
