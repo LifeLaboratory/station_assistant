@@ -277,6 +277,8 @@ class Path:
             answer['route'].append(
                 {"name": [''], "time": [0], "descr": [None], "Y": [touch_be[0][1]], "type": [], "X": [touch_be[0][0]]})
             for touch in route['path']:
+                if touch == 0:
+                    answer['route'][ch]['type'].append('point')
                 if touch == 0 or touch == N + 2:
                     continue
                 current_info = result_coord[id_list[touch - 1]]
@@ -291,7 +293,7 @@ class Path:
             answer['route'][ch]['descr'].append(None)
             answer['route'][ch]['Y'].append(touch_be[1][1])
             answer['route'][ch]['X'].append(touch_be[1][0])
-            answer['route'][ch]['type'].append('Touch')
+            answer['route'][ch]['type'].append('point')
             ch += 1
         return answer
 

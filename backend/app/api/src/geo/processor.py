@@ -19,5 +19,17 @@ def GeoProcessor(data):
     provider = Provider()
     datas, types, index_priority = assemly_data(data)
     answer = Path(datas[0], datas[1], data.get(names.TIME), index_priority, types).result
-    return answer
+    route = answer['route'][0]
+    new_route = []
+    for i in range(len(route['name'])):
+        dict_route = {}
+        dict_route['name'] = route['name'][i]
+        dict_route['X'] = route['X'][i]
+        dict_route['Y'] = route['Y'][i]
+        dict_route['time'] = route['time'][i]
+        dict_route['descr'] = route['time'][i]
+        dict_route['type'] = route['type'][i]
+        new_route.append(dict_route)
+
+    return new_route
 
