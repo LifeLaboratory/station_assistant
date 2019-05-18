@@ -48,7 +48,18 @@ def get_google(data):
         return int(answer[0])
 
 
+def set_time(point):
+    """Установка времени пребывания на точке"""
+    point['time'] = 30
+
+def set_rating(point):
+    """Установка популярности точки"""
+    point['rating'] = 100
+
 def add_new_point(new_point):
+
+    set_time(new_point)
+    set_rating(new_point)
     sql = " INSERT INTO Geo (Name, X, Y, Type, Descript, Rating, Time) VALUES (\'{}\', {}, {}, \'{}\', \'{}\', {}, {})".format(
         new_point["name"],
         float(new_point["x"]),

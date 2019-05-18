@@ -35,6 +35,8 @@ PRIORITY = 'priority'
 x = 'x'
 y = 'y'
 DESCR = 'descr'
+DATETIME = 'datetime'
+RATING = 'rating'
 
 ERROR_EXECUTE_DATABASE = "Fatal error: execute database"
 ERROR_CONNECT_DATABASE = "Error connect database"
