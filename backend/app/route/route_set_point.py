@@ -8,7 +8,7 @@ class RouteSetPoint(BaseRouter):
 
     def __init__(self):
         super().__init__()
-        self.args = self.args = [names.ORIGIN_X, names.ORIGIN_Y, names.TYPE, names.TIME, names.DESCRIPTION,
+        self.args = self.args = [names.x, names.y, names.TYPE, names.NAME, names.DESCRIPTION,
                                  names.DATETIME, names.TIME, names.RATING]
 
     def post(self):

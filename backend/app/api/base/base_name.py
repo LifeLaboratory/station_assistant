@@ -5,7 +5,7 @@ SUCCESS = "Success"
 ANSWER = "Answer"
 SESSION = 'session'
 
-DESCRIPTION = "Description"
+DESCRIPTION = "description"
 DATA = "data"
 COMPANY = "Company"
 LOGIN = "login"

@@ -2,6 +2,7 @@
 
 import unittest
 import requests as req
+from app.api.base import base_name as names
 from app.api.base.base_sql import Sql
 from app.api.src.touches_from_api import add_new_point
 
@@ -9,17 +10,17 @@ class TestSetPoint(unittest.TestCase):
 
     def test_set_point(self):
 
-        origin_x = 0
-        origin_y = 0
+        origin_x = 55.02999
+        origin_y = 82.921098
         type_point = 'museum'
 
         data = {
-            'origin_x': origin_x,
-            'origin_y': origin_y,
-            'type': type_point,
-            'name': 'Музей имени Меня!',
-            'description': 'Приходите и восхищайтесь!',
-            'datetime': 'infinity',
+            names.x: origin_x,
+            names.y: origin_y,
+            names.TYPE: type_point,
+            names.NAME: 'Музей имени Меня!',
+            names.DESCRIPTION: 'Приходите и восхищайтесь!',
+            names.DATETIME: 'infinity',
         }
 
         req.post('http://127.0.0.1:13452/set_point', data=data)
