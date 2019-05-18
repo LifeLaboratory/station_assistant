@@ -3,6 +3,7 @@
 import unittest
 import requests as req
 from app.api.base.base_sql import Sql
+from app.api.src.touches_from_api import add_new_point
 
 class TestSetPoint(unittest.TestCase):
 
@@ -21,7 +22,7 @@ class TestSetPoint(unittest.TestCase):
             'datetime': 'infinity',
         }
 
-        req.post('http://90.189.168.29:13451/set_point', data=data)
+        req.post('http://127.0.0.1:13452/set_point', data=data)
 
         check_geo = Sql.exec(query="""select
                                         id
@@ -30,7 +31,7 @@ class TestSetPoint(unittest.TestCase):
                                       where
                                         x = {origin_x}
                                         and y = {origin_y}
-                                        and type = {type_point})
+                                        and type = '{type_point}'
                                       limit 1
                                       """.format(origin_x=origin_x, origin_y=origin_y, type_point=type_point))
 
@@ -54,3 +55,7 @@ class TestSetPoint(unittest.TestCase):
                       point_1 = {point_1}
                       or point_2 = {point_2}
                  """.format(point_1=check_geo[0]['id'], point_2=check_geo[0]['id']))
+
+
+if __name__ == '__main__':
+    unittest.main()
