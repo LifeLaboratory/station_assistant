@@ -3,7 +3,7 @@ import json
 import requests as req
 from app.api.helpers.service import Gis as gs
 from app.api.base.base_sql import Sql
-
+from app.api.base import base_name as names
 
 def get_from_google(query):
     """
@@ -57,41 +57,44 @@ def set_rating(point):
     point['rating'] = 100
 
 def add_new_point(new_point):
-
     set_time(new_point)
     set_rating(new_point)
-    sql = " INSERT INTO Geo (Name, X, Y, Type, Descript, Rating, Time) VALUES (\'{}\', {}, {}, \'{}\', \'{}\', {}, {})".format(
-        new_point["name"],
-        float(new_point["x"]),
-        float(new_point["y"]),
-        new_point["type"],
-        new_point["description"],
-        int(new_point["rating"]),
-        int(new_point["time"]))
-    Sql.exec(query=sql)
+    sql = " INSERT INTO Geo (Name, X, Y, Type, Descript, Rating, Time) VALUES (\'{}\', {}, {}, \'{}\', \'{}\', {}, {}) RETURNING id".format(
+        new_point[names.NAME],
+        float(new_point[names.x]),
+        float(new_point[names.y]),
+        new_point[names.TYPE],
+        new_point[names.DESCRIPTION],
+        int(new_point[names.RATING]),
+        int(new_point[names.TIME]))
 
-    sql = "SELECT id FROM Geo WHERE X={} AND Y={}".format(new_point["x"], new_point["y"])
-    new_point["id"] = Sql.exec(query=sql)
-    new_point["id"] = int(new_point["id"][0]['id'])
-    points = Sql.exec(query="SELECT id, x, y FROM Geo WHERE id <> (SELECT last_value from geo_id_seq)")
-    for i in range(len(points)):
-        data = []
-        disti = str(points[i]['x']) + "," + str(points[i]['y'])
-        distj = str(new_point['x']) + "," + str(new_point['y'])
-        data.append(disti)
-        data.append(distj)
-        answer = get_google(data)
-        print(points[i]['id'], new_point['id'], answer)
-        sql = "INSERT INTO geo_distance (point_1, point_2, distance) VALUES ({}, {}, {})".format(
-            points[i]['id'],
-            new_point['id'],
-            answer)
-        Sql.exec(query=sql)
+    new_id = Sql.exec(query=sql)[0]['id']
 
-        Sql.exec(query="INSERT INTO geo_distance (point_1, point_2, distance) VALUES ({}, {}, {})".format(
-            new_point['id'],
-            points[i]['id'],
-            answer))
+    sql_cross_join = """
+    select
+      geo.id new_id,
+      geo1.id other_id,
+      geo.x::text || ',' || geo.y::text new_xy,
+      geo1.x::text || ',' || geo1.y::text other_xy
+    from
+      geo
+      cross join geo geo1
+    where
+      geo.id = {}
+    """.format(new_id)
+
+    paths_points = Sql.exec(query=sql_cross_join)
+
+    for path in paths_points:
+        other_id = path['other_id']
+        data = [path['new_xy'], path['other_xy']]
+        answer = get_google(data) if new_id != other_id else 0
+
+        print(path['new_id'], path['other_id'], answer)
+
+        sql_insert = "INSERT INTO geo_distance (point_1, point_2, distance) VALUES ({}, {}, {})"
+        Sql.exec(query=sql_insert.format(new_id, other_id, answer))
+        Sql.exec(query=sql_insert.format(other_id, new_id, answer)) if new_id != other_id else None
 
 
 if __name__ == '__main__':

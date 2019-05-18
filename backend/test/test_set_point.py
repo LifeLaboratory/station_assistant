@@ -10,41 +10,18 @@ class TestSetPoint(unittest.TestCase):
 
     def test_set_point(self):
 
-        # origin_x = 55.02999
-        # origin_y = 82.921098
-        # type_point = 'museum'
-        #
-        # data = {
-        #     names.x: origin_x,
-        #     names.y: origin_y,
-        #     names.TYPE: type_point,
-        #     names.NAME: 'Музей имени Меня!',
-        #     names.DESCRIPTION: 'Приходите и восхищайтесь!',
-        #     names.DATETIME: "2019-03-31 21:03:30",
-        # }
-        origin_x = 55.03721400913637
-        origin_y = 82.89763175646169
-        type_point = "event"
+        origin_x = 55.02999
+        origin_y = 82.921098
+        type_point = 'museum'
 
-        # data = {
-        #     names.x: origin_x,
-        #     names.y: origin_y,
-        #     names.TYPE: type_point,
-        #     names.NAME: 'Музей имени Меня!',
-        #     names.DESCRIPTION: 'Приходите и восхищайтесь!',
-        #     names.DATETIME: "2019-03-31 21:03:30",
-        # }
-
-
-
-        data = {"y":82.89763175646169,
-         "x":55.03721400913637,
-         "type":"event",
-         "name":"12312312",
-         "description":"213213123",
-         "datetime":"2019-03-31 21:03:30",
-         "time":"",
-         "rating":100}
+        data = {
+            names.x: origin_x,
+            names.y: origin_y,
+            names.TYPE: type_point,
+            names.NAME: 'Музей имени Меня!',
+            names.DESCRIPTION: 'Приходите и восхищайтесь!',
+            names.DATETIME: "2019-03-31 21:03:30",
+        }
 
         req.post('http://127.0.0.1:13452/set_point', data=data)
 
