@@ -5,6 +5,43 @@
     <title>Station Assistant</title>
 </head>
 <body>
-<div id="map" style="width:1280px; height:720px"></div>
+
+<style type="text/css">
+	.popup{
+    		position: absolute;
+    		width: 20%;
+    		height: auto;
+    		background: white;
+    		top: 80px;
+    		left: 40%;
+    		-webkit-box-shadow: 10px 10px 0px 10000px rgba(0,0,0,0.63);
+			-moz-box-shadow: 10px 10px 0px 10000px rgba(0,0,0,0.63);
+			box-shadow: 10px 10px 0px 10000px rgba(0,0,0,0.63);
+			display: none;
+			padding: 10px;
+			text-align: center;
+			border-radius: 10px;
+    	}
+</style>
+
+
+<div id="map" style="width:80%; height:720px"></div>
+<div style="width: 19%"><button id="createMarker" value="button">asdasd</button></div>
+
+<div class="popup">
+    		<input type="text" id="name" placeholder="Имя" required=""><br>
+    		<input type="text" id="about" placeholder="Описание" required=""><br>
+    		<select name="type[]" id="type" required="">
+    			<option value="event">Событие</option>
+    			<option value="monument">Памятник</option>
+    			<option value="intPlace">Интересное место</option>
+    		</select>
+    		<input type="date" id="date"  min="2019-05-18" required><br>
+    		<input type="time" id="time" value="00:00" required><br>
+    		<input type="hidden" id="map"><br>
+    		<input type="hidden" id="location"><br>	
+    		<button id="submitMarker">Создать</button>
+   			<button id="closeMarker">Отмена</button>
+    </div>
 </body>
 </html>

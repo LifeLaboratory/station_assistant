@@ -2,6 +2,7 @@ import utils from "./utils"
 import Route from "./route"
 import logger from "./logger"
 import LatLng from "./latlng"
+import Marker from "./marker"
 
 export default class GidonisMap {
 
@@ -33,8 +34,22 @@ export default class GidonisMap {
 
         const geoRoute = new Route({rawPoints: rawGeoPoints, google})
 
-        this.map = new google.maps.Map(
-            document.getElementById("map"), {zoom: 4, center: new LatLng(routeRequest.origin.x, routeRequest.origin.y)})
+        this.map = new google.maps.Map(document.getElementById("map"), {zoom: 4, center: new LatLng(routeRequest.origin.x, routeRequest.origin.y)})
+        createMarker.onclick = () => {
+            this.map.addListener('click',(event) => {
+                const geodata = [event.latLng.lat(), event.latLng.lng()];
+                document.getElementsByClassName('popup')[0].style.display = "block";
+                submitMarker.onclick = () => {
+                    Marker.addMarker(geodata[0], geodata[1], document.getElementById('type').value, document.getElementById('name').value, document.getElementById('about').value, document.getElementById('date').value+" "+document.getElementById('time').value)
+                    
+                 }
+                
+            })
+        }
+
+        closeMarker.onclick = () => {
+            Marker.closePopup();
+        }
 
         await this.drawRoute(geoRoute)
     }
