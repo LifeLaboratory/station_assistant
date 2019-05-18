@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "eslint": "eslint --init",
+    "eslint": "eslint .",
     "serve": "webpack-dev-server"
   },
   "author": "",
