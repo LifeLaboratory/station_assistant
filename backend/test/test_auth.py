@@ -1,21 +1,54 @@
 import unittest
 import requests as req
-from auth.config.config import HOST
-import base.base_name as names
-from auth.api.src.Authentication import auth
-from base.helpers.service import Gis
+from app.config.config import HOST
+import app.api.base.base_name as names
+from app.api.src.authentication import auth
+from app.api.helpers.service import Gis
 
 
 class TestAuth(unittest.TestCase):
     def test_auth_back_client(self):
         data = {
                 names.LOGIN: 'boris',
-                names.PASSWORD: 'boris',
-                names.PAGE: 0
+                names.PASSWORD: 'boris'
                 }
-        result = auth(data)
-        self.assertEqual(result[0], 200)
-        self.assertTrue(result[1], None)
+        data = req.post('http://127.0.0.1/auth', data=data)
+        self.assertEqual(data.status_code, 200)
+        self.assertIsNotNone(data.text)
+        print(data.text)
+        return
+
+    def test_register_back_client(self):
+        data = {
+                names.LOGIN: 'boris2',
+                names.PASSWORD: 'boris',
+                names.NAME: 'boris'
+                }
+        data = req.post('http://127.0.0.1/register', data=data)
+        self.assertEqual(data.status_code, 200)
+        self.assertIsNotNone(data.text)
+        print(data.text)
+        return
+
+    def test_list_nom_back_client(self):
+        data = req.get('http://127.0.0.1/get_list')
+        self.assertEqual(data.status_code, 200)
+        self.assertIsNotNone(data.text)
+        print(data.text)
+        return
+
+    def test_search_nom_back_client(self):
+        data = req.get('http://127.0.0.1/search/code/терафлю')
+        self.assertEqual(data.status_code, 200)
+        self.assertIsNotNone(data.text)
+        print(data.text)
+        return
+
+    def test_info_nom_back_client(self):
+        data = req.get('http://127.0.0.1/info/1')
+        self.assertEqual(data.status_code, 200)
+        self.assertIsNotNone(data.text)
+        print(data.text)
         return
 
     def test_auth_back_staff(self):

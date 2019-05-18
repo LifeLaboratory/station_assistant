@@ -3,7 +3,7 @@ version: '2.1'
 services:
   auth:
     restart: always
-    build: auth/
+    build: app/
     volumes:
       - ./auth/ :/auth/
     expose:
