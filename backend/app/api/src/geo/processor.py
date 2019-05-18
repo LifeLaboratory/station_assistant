@@ -6,7 +6,7 @@ from .path import Path
 
 def assemly_data(data):
     data_origin = (float(data.get(names.ORIGIN_X)), float(data.get(names.ORIGIN_Y)))
-    data_destination = (float(data.get(names.DESTINATION_X)), float(data.get(names.DESTINATION_X)))
+    data_destination = (float(data.get(names.DESTINATION_X)), float(data.get(names.DESTINATION_Y)))
     index_priority = []
     types = Provider().get_types()
     for priority in data.get(names.PRIORITY):
