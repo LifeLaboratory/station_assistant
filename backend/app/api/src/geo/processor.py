@@ -23,12 +23,12 @@ def GeoProcessor(data):
     new_route = []
     for i in range(len(route['name'])):
         dict_route = {}
-        dict_route['name'] = route['name'][i]
-        dict_route['X'] = route['X'][i]
-        dict_route['Y'] = route['Y'][i]
-        dict_route['time'] = route['time'][i]
-        dict_route['descr'] = route['time'][i]
-        dict_route['type'] = route['type'][i]
+        dict_route[names.NAME] = route[names.NAME][i]
+        dict_route[names.x] = route['X'][i]
+        dict_route[names.y] = route['Y'][i]
+        dict_route[names.TIME] = route[names.TIME][i]
+        dict_route[names.DESCR] = route[names.DESCR][i]
+        dict_route[names.TYPE] = route[names.TYPE][i]
         new_route.append(dict_route)
 
     return new_route
