@@ -1,6 +1,4 @@
 import Point from "./point"
-import LatLng from "./latlng"
-import logger from "./logger"
 
 export default class Route {
 
@@ -12,9 +10,12 @@ export default class Route {
         const waypoints = points.filter((point) => point.type !== "point")
 
         this.points = points
-        this.startPoint = new Point(start)
-        this.endPoint = new Point(end)
-        this.waypoints = waypoints
+
+        if (points.length > 0) {
+            this.startPoint = new Point(start)
+            this.endPoint = new Point(end)
+            this.waypoints = waypoints
+        }
 
     }
 

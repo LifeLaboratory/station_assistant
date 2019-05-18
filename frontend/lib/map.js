@@ -6,38 +6,8 @@ import LatLng from "./latlng"
 export default class GidonisMap {
 
     constructor() {
-
-        /*
-        *
-        *
-        *
-
-    // The location of Uluru
-    var first = {lat: 52.377002, lng: 4.889937}
-    var second = {lat: 51.377002, lng: 4.889937}
-    var third = {lat: 50.377002, lng: 4.889937}
-    var fourth = {lat: 49.377002, lng: 4.889937}
-    // The marker, positioned at Uluru
-
-    // The map, centered at Uluru
-    const map = new google.maps.Map(
-        document.getElementById("map"), {zoom: 4, center: first})
-
-    var firstMarker = new google.maps.Marker({position: first, map: map})
-    var secondMarker = new google.maps.Marker({position: second, map: map})
-    var thirdMarker = new google.maps.Marker({position: third, map: map})
-    var fourthMarker = new google.maps.Marker({position: fourth, map: map})
-
-    var directionsService = new google.maps.DirectionsService()
-    var directionsDisplay = new google.maps.DirectionsRenderer()
-
-    directionsDisplay.setMap(map)
-    directionsDisplay.setPanel(document.getElementById("directionsPanel"))*/
-
-
         this.init = this.init.bind(this)
         this.drawRoute = this.drawRoute.bind(this)
-
     }
 
     async init() {
@@ -55,7 +25,7 @@ export default class GidonisMap {
                 x: 55.044237,
                 y: 82.916694
             },
-            time: 520,
+            time: 180,
             priority: ["bar", "museum", "point_of_interest", "park"]
         }
 
@@ -64,7 +34,7 @@ export default class GidonisMap {
         const geoRoute = new Route({rawPoints: rawGeoPoints, google})
 
         this.map = new google.maps.Map(
-            document.getElementById("map"), {zoom: 4, center: new LatLng(geoRoute.startPoint.x, geoRoute.startPoint.y)})
+            document.getElementById("map"), {zoom: 4, center: new LatLng(routeRequest.origin.x, routeRequest.origin.y)})
 
         await this.drawRoute(geoRoute)
     }
@@ -72,6 +42,10 @@ export default class GidonisMap {
 
     async drawRoute(route) {
         return new Promise((resolve, reject) => {
+            if (!route.points.length) {
+                throw new Error("NoPointsError")
+            }
+
             const request = {
                 origin: new LatLng(route.startPoint.x, route.startPoint.y),
                 destination: new LatLng(route.endPoint.x, route.endPoint.y),
