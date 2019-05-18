@@ -4,6 +4,7 @@ from app.route.route_register import Register
 from app.route.route_session import Session
 from app.route.route_geo import GeoRoute
 from app.route.route_all_touch import AllTouch
+from app.route.route_set_point import RouteSetPoint
 
 ROUTES = {
     Register: '/register',
@@ -13,5 +14,6 @@ ROUTES = {
     Favicon: '/favicon.ico',
     Session: '/session',
     GeoRoute: '/geo',
-    AllTouch: '/all_touch'
+    AllTouch: '/all_touch',
+    RouteSetPoint: '/set_point'
 }

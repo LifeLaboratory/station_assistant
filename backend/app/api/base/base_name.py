@@ -32,6 +32,8 @@ DESTINATION_X = 'destination_x'
 DESTINATION_Y = 'destination_y'
 TIME = 'time'
 PRIORITY = 'priority'
+DATETIME = 'datetime'
+RATING = 'rating'
 
 ERROR_EXECUTE_DATABASE = "Fatal error: execute database"
 ERROR_CONNECT_DATABASE = "Error connect database"
