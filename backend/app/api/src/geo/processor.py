@@ -19,6 +19,8 @@ def GeoProcessor(data):
     provider = Provider()
     datas, types, index_priority = assemly_data(data)
     answer = Path(datas[0], datas[1], data.get(names.TIME), index_priority, types).result
+    if not answer['route']:
+        return answer
     route = answer['route'][0]
     new_route = []
     for i in range(len(route['name'])):
