@@ -20,7 +20,7 @@ class TestSetPoint(unittest.TestCase):
             names.TYPE: type_point,
             names.NAME: 'Музей имени Меня!',
             names.DESCRIPTION: 'Приходите и восхищайтесь!',
-            names.DATETIME: 'infinity',
+            names.DATETIME: "2019-03-31 21:03:30",
         }
 
         req.post('http://127.0.0.1:13452/set_point', data=data)
@@ -45,7 +45,7 @@ class TestSetPoint(unittest.TestCase):
                                                     where
                                                       point_1 = {point_1}
                                                       or point_2 = {point_2}
-                                                    limit 1
+                                                    limit 1)
                                     """.format(point_1=check_geo[0]['id'], point_2=check_geo[0]['id']))
 
         self.assertEqual(True, bool(check_path))
