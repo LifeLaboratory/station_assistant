@@ -30,21 +30,16 @@ export default class GidonisMap {
             priority: ["bar", "museum", "point_of_interest", "park"]
         }
 
-<<<<<<< HEAD
         const rawGeoPoints = await utils.getGeoRoute(routeRequest)
         var geocoder = new google.maps.Geocoder();
         const geoRoute = new Route({rawPoints: rawGeoPoints, google})
-=======
-        var rawGeoPoints = await utils.getGeoRoute(routeRequest)
-
-        var geoRoute = new Route({rawPoints: rawGeoPoints, google})
->>>>>>> 22fe3da0db2933c9de70eb965a9a96b8b1ec9171
 
         this.map = new google.maps.Map(document.getElementById("map"), {zoom: 4, center: new LatLng(routeRequest.origin.x, routeRequest.origin.y)})
         
         createMarker.onclick = () => {
             document.getElementById('createMarker').style.background = 'aqua'
             this.map.addListener('click',(event) => {
+                google.maps.event.clearListeners(this.map, 'click');
                 document.getElementById('createMarker').style.background = '#ff9e67'
                 var objSel = document.getElementById("type");
                 fetch('http://90.189.168.29:13452/geo_types')
@@ -60,6 +55,10 @@ export default class GidonisMap {
                     })
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
                 document.getElementsByClassName('popup')[0].style.display = "block";
+                closeMarker.onclick = () => {
+                    Marker.closePopup();
+                    google.maps.event.clearListeners(this.map, 'click');
+                }
                 submitMarker.onclick = () => {
                     Marker.addMarker(geodata[0], geodata[1], document.getElementById('type').value, document.getElementById('name').value, document.getElementById('about').value, document.getElementById('date').value+" "+document.getElementById('time').value, document.getElementById('timeLenght').value, document.getElementById('timeNoLimit').checked )
                     document.getElementsByClassName('popup')[0].style.display = "none";
@@ -75,10 +74,6 @@ export default class GidonisMap {
             })
         }
 
-        closeMarker.onclick = () => {
-            Marker.closePopup();
-            this.map.event.clearListeners(this.map, 'click');
-        }
 
 
         function innerText(id, lt){
