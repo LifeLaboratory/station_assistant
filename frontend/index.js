@@ -7,23 +7,7 @@ map
     .init(() => console.log("Gidonis map loaded"))
     .catch(console.error)
 
-var types=[]
 
-window.initMap = () => {
-const {google} = window
-    // The location of Uluru
-    var start_position = {lat: 55.0415, lng: 82.9346}
-    
-    // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById("map"), {zoom: 10, center: start_position})
-    //var types=JSON.parse(localStorage.getItem('categories')
-    
-    loadMarkers(map, google, types)
-    
-    loadCategories()
-
-}
 
 function addMarker(location, title) {
             var marker = new google.maps.Marker({
@@ -140,8 +124,4 @@ function loadCategories()
 }
 
 loadCategories()
-loadGoogleMapsScript()
-    var types=[]
-    loadMarkers(map, google, types)
-    
 
