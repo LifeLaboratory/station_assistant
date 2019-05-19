@@ -8,21 +8,6 @@ map
     .catch(console.error)
 
 
-window.initMap = () => {
-const {google} = window
-    // The location of Uluru
-    var start_position = {lat: 55.0415, lng: 82.9346}
-    
-    // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById("map"), {zoom: 10, center: start_position})
-    //var types=JSON.parse(localStorage.getItem('categories')
-    var types=[]
-    loadMarkers(map, google, types)
-    
-}
-
-
 var getJSON = function(url, callback) {
 
     var xhr = new XMLHttpRequest();
@@ -116,4 +101,3 @@ function loadCategories()
 }
 
 loadCategories()
-loadGoogleMapsScript()
