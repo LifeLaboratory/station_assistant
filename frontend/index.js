@@ -211,20 +211,21 @@ function loadCategories()
             cat.setAttribute("checked", true);
             //cat.setAttribute("onClick", "changeCategory('" + categories.response.data[i] + "')");
             cat.addEventListener( "click" , function(event) {
-                if(event.target.checked == false)
+                var places = JSON.parse(localStorage.getItem('places'))
+                for (var i = 0; i < places.length; i++)
                 {
-                    var json = JSON.parse(localStorage.getItem('categories'))
-                    delete json[event.target.id];
-                    //var types = JSON.parse(localStorage.getItem('categories'));
-                    for (var i = 0; i < markers.length; i++) {
-                          markers[i].setMap(null);
-                        }
-
-                }
-                else
+                    if(places[i].type == event.target.id && event.target.checked == false)
                     {
-                               
+                        //remove marker
+                        //clearMarkers()
+                        markers[markers.indexOf(places[i])].setMap(null);
                     }
+                    else if (places[i].type == event.target.id && event.target.checked == true)
+                    {
+                        //add marker to map
+                        addMarker(places[i])
+                    }
+                }
             })
             cat.setAttribute("id",categories.response.data[i]);
             cat.setAttribute("name",categories.response.data[i]);
