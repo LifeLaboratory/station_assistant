@@ -30,9 +30,9 @@ export default class GidonisMap {
             priority: ["bar", "museum", "point_of_interest", "park"]
         }
 
-        const rawGeoPoints = await utils.getGeoRoute(routeRequest)
+        var rawGeoPoints = await utils.getGeoRoute(routeRequest)
 
-        const geoRoute = new Route({rawPoints: rawGeoPoints, google})
+        var geoRoute = new Route({rawPoints: rawGeoPoints, google})
 
         this.map = new google.maps.Map(document.getElementById("map"), {zoom: 4, center: new LatLng(routeRequest.origin.x, routeRequest.origin.y)})
         
@@ -70,17 +70,19 @@ export default class GidonisMap {
         closeMarker.onclick = () => {
             Marker.closePopup();
         }
-
+        
+        var markers = []
         firstDot.onclick = () => {
             this.map.addListener('click',(event) => {
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
                 
-                new google.maps.Marker({
+                var marker = new google.maps.Marker({
                         title: document.getElementById('name').value,
                         position: new LatLng(event.latLng.lat(), event.latLng.lng()), 
                         label: '',
                         map: this.map,
                     });
+                markers.push(marker)
                 routeRequest.origin.x = event.latLng.lat()
                 routeRequest.origin.y = event.latLng.lng()
                 document.getElementById('firstDot').style.background = 'green'
@@ -91,18 +93,31 @@ export default class GidonisMap {
         secondDot.onclick = () => {
             this.map.addListener('click',(event) => {
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
-                new google.maps.Marker({
+                var marker = new google.maps.Marker({
                         title: document.getElementById('name').value,
                         position: new LatLng(event.latLng.lat(), event.latLng.lng()), 
                         label: '',
                         map: this.map,
                     });
+                markers.push(marker)
                 routeRequest.destination.x = event.latLng.lat()
                 routeRequest.destination.y = event.latLng.lng()
                 document.getElementById('secondDot').style.background = 'green'
                 
         })
     }
+        build_route.onclick = async() => {
+           //var directionsDisplay = new google.map.clearOverlays()
+            for (var i = 0; i < markers.length; i++) {
+              markers[i].setMap(null);
+            }
+            const rawGeoPoints = await utils.getGeoRoute(routeRequest)
+            
+            const geoRoute = new Route({rawPoints: rawGeoPoints})
+            
+            await this.drawRoute(geoRoute)
+        }
+        
         
         await this.drawRoute(geoRoute)
     }
