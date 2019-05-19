@@ -16,3 +16,8 @@ class AllTouch(BaseRouter):
         #self._read_args()
         answer = AllProcessor(self.data)
         return answer, HEADER
+
+    def options(self):
+        return "OK", 200, {'Access-Control-Allow-Origin': '*',
+                                 'Access-Control-Allow-Methods': 'GET,POST,DELETE,PUT,OPTIONS',
+                                 'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type'}
