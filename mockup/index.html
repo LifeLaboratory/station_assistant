@@ -1,6 +1,12 @@
     <!doctype html>
     <html lang="en">
     <head>
+        <style type="text/css">
+            .popup{
+                display: none;
+            }
+            .moving * {cursor: pointer !important;} 
+        </style>
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -35,7 +41,10 @@
 
     <div class="route-menu active">
         <div class="route-menu__header">Меню маршрута</div>
-
+        <div>
+            <button class="point-menu__button" id="firstDot" style="width: 49%; display: inline-block;">Начальная точка</button>
+            <button class="point-menu__button" id="secondDot" style="width: 49%; display: inline-block;">Конечная точка</button>
+        </div>        
         <div class="points-list route-menu__points-list ">
             <div class="points-list__item">
                 <span>Начальная точка</span>
@@ -73,38 +82,37 @@
         <button class="route-menu__submit-btn">Построить маршрут</button>
     </div>
 
-    <div class="add-point-block route-menu__add-point-block">
+    <div class="add-point-block route-menu__add-point-block popup">
         <div class="add-point-block__header">Добавить точку</div>
-        <form class="add-point-form add-point-block__form">
-            <input type="text" placeholder="Название">
-            <textarea name="" id="" placeholder="Описание"></textarea>
-
-            <select name="" id="">
-                <option value="" selected disabled hidden>Выберите категорию</option>
-                <option value="">Категория 1</option>
-                <option value="">Категория 2</option>
-                <option value="">Категория 3</option>
+        <div class="add-point-form add-point-block__form">
+            <input type="text" id="name" placeholder="Название" required="">
+            <input type="text" id="about" placeholder="Описание" required="">
+            <select name="type[]" id="type" required="">
+                <option value="event">Событие</option>
+                <option value="monument">Памятник</option>
+                <option value="intPlace">Интересное место</option>
             </select>
-            <input type="text" placeholder="Время проведения"/>
+            <input type="date" id="date"  min="2019-05-18" placeholder="Дата окончания" required>
 
             <div class="add-point-block__label">Время окончания</div>
-            <input required type="time" placeholder="Время окончания"/>
+            <input type="time" id="time" value="00:00" placeholder="Время окончания" required>
             <div class="add-point-block__label">Дата окончания</div>
-            <input required type="date" placeholder="Дата окончания"/>
+            <input type="time" id="timeLenght" name="timeLenght" value="00:00" placeholder="Длительность проведения" required><br>
 
             <label class="checkbox">
-                <input type="checkbox"/>
+                <input type="checkbox" id="timeNoLimit">
                 <i></i>
-                <span>Постоянно активная</span>
+                <span>Постоянно активная метка</span>
             </label>
 
 
 
-            <button class="add-point-form__submit-btn" type="submit">Добавить точку</button>
-        </form>
+            <button class="add-point-form__submit-btn" id="submitMarker">Добавить точку</button>
+            <button class="add-point-form__submit-btn" id="closeMarker">Отмена</button>
+        </div>
     </div>
 
-    <buton class="add-point-btn">Добавить точку</buton>
+    <buton class="add-point-btn" id="createMarker">Добавить точку</buton>
 
     </body>
     </html>
