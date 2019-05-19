@@ -1,5 +1,6 @@
 import "babel-polyfill"
 import GidonisMap from "./lib/map"
+import "./scss/main.scss"
 
 const map = new GidonisMap()
 

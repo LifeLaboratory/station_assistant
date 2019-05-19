@@ -1,0 +1,65 @@
+@import "mixins";
+
+
+.route-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  right: -490px;
+  width: 490px;
+  height: 100%;
+  background-color: $block-bg-color;
+  padding: 0 $side-offset;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: all 1s;
+  transform: translateX(calc(100% + 50px));
+
+  &.active {
+    transition: all .7s;
+    right: 0;
+    transform: translateX(0);
+  }
+
+  &__header {
+    margin: 0 $side-offset-minus;
+    background-color: $head-bg-color;
+    font-size: 24px;
+    padding: 16px $side-offset;
+  }
+
+  &__points-list {
+    flex: 1;
+    padding-top: 20px;
+  }
+
+  &__submit-btn {
+    @include default-btn();
+    width: 100%;
+  }
+
+  &__settings {
+    .checkbox {
+      width: 100%;
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__time {
+    font-size: 20px;
+    margin: 10px 0 20px;
+
+    span.minutes {
+      &:after {
+        content: 'мин';
+      }
+    }
+
+    span.hour {
+      &:after {
+        content: 'ч';
+      }
+    }
+  }
+}

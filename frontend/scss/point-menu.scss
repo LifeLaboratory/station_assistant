@@ -1,0 +1,45 @@
+@import "mixins";
+
+$side-offset: 20px;
+$side-offset-minus: -$side-offset;
+
+.point-menu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: $block-bg-color;
+  width: 500px;
+  padding: 0 $side-offset;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+  &.random {
+    width: 420px;
+    display: flex;
+  }
+
+  &__header {
+    margin: 0 $side-offset-minus;
+    background-color: $head-bg-color;
+    font-size: 24px;
+    padding: 16px $side-offset;
+  }
+
+  &__description {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  &__button {
+    @include default-btn();
+    width: 280px;
+    margin: 20px auto;
+    display: block;
+
+    .random & {
+      width: 170px;
+    }
+  }
+}
