@@ -52,9 +52,11 @@ def set_time(point):
     """Установка времени пребывания на точке"""
     point['time'] = 30
 
+
 def set_rating(point):
     """Установка популярности точки"""
     point['rating'] = 100
+
 
 def add_new_point(new_point):
 
@@ -96,20 +98,39 @@ def add_new_point(new_point):
 
 if __name__ == '__main__':
     list_places = [
-        'accounting',
-        'airport',
-        'amusement_park',
-        'aquarium',
-        'art_gallery',
-        'bakery',
-        'bar',
-        'beauty_salon',
-        'bicycle_store',
-        'book_store'
-        'bowling_alley',
-        'cafe',
-        'campground',
-        'church',
+        # 'accounting',
+        # 'airport',
+        # 'amusement_park',
+        # 'aquarium',
+        # 'art_gallery',
+        # 'bakery',
+        # 'bar',
+        # 'beauty_salon',
+        # 'bicycle_store',
+        # 'book_store'
+        # 'bowling_alley',
+        # 'cafe',
+        # 'campground',
+        # 'church',
+        'city_hall',
+        'florist',
+        'library',
+        'liquor_store',
+        'meal_delivery',
+        'movie_rental',
+        'movie_theater',
+        'moving_company',
+        'museum',
+        'night_club',
+        'painter',
+        'park',
+        'pet_store',
+        'restaurant',
+        'shopping_mall',
+        'spa',
+        'stadium',
+        'train_station',
+        'zoo'
 
 ]
     for place in list_places:

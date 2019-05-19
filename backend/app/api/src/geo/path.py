@@ -80,7 +80,7 @@ class Path:
                 point[2] = self.start[1] + dynamic_delta
                 point[3] = self.start[1] - dynamic_delta
 
-            get_sql = "SELECT * FROM Geo WHERE x >= {} and x <= {} and y >= {} and y <= {} LIMIT 48".format(
+            get_sql = "SELECT * FROM Geo WHERE x >= {} and x <= {} and y >= {} and y <= {} order by id LIMIT 48".format(
                 point[0],
                 point[1],
                 point[2],
@@ -130,7 +130,7 @@ class Path:
             where (point_1, point_2) = (pair.a_p, pair.b_p) 
             or (point_1, point_2) = (pair.b_p, pair.a_p)
         )
-        select * from get_coord;
+        select * from get_coord order by point_1, point_2;
         """
         text = ''
         for i in self.id_list:
@@ -235,7 +235,7 @@ class Path:
 
         # Определение максимально приоритета
         max_priority = len(priority)
-
+        priority = [len(priority) for i in range(len(priority))]
         sko_array = []
         for element in self.dict_graph[0]:
             sko_array.append(element[1])
