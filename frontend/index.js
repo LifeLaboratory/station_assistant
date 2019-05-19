@@ -84,7 +84,7 @@ getJSON("http://90.189.168.29:13452/all_touch", function(places) {
 }
 
 
-function loadCategories()
+/*function loadCategories()
 {
     getJSON("http://90.189.168.29:13452/geo_types", function(categories) {
         localStorage.setItem('categories', JSON.stringify(categories.response.data));
@@ -122,7 +122,7 @@ function loadCategories()
             }
         
     })
-}
+}*/
 
-loadCategories()
+//loadCategories()
 

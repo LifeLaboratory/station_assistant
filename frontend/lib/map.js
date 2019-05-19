@@ -56,7 +56,7 @@ export default class GidonisMap {
                     document.getElementsByClassName('popup')[0].style.display = "none";
                     var ur = {lat: geodata[0], lng: geodata[1]};
                     var marker =  new google.maps.Marker({
-                        title: '1',
+                        title: document.getElementById('name').value,
                         position: ur, 
                         label: '',
                         map: this.map,
