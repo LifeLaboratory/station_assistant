@@ -23,7 +23,7 @@ module.exports = {
     devtool: "source-map",
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./index.html"
+            template: "../mockup/index.html"
         }),
         new Dotenv()
     ],
