@@ -86,12 +86,19 @@ export default class GidonisMap {
                       }
                     }
                   });
+        closeMarker.onclick = () => {
+            Marker.closePopup();
         }
         
         var markers = []
         firstDot.onclick = () => {
             this.map.addListener('click',(event) => {
                 google.maps.event.clearListeners(this.map, 'click');
+                var toHide = markers.filter(marker => marker.selectedFirst)
+                
+                if(toHide.length ) {
+                    toHide.forEach(marker => marker.setMap(null))
+                }
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
                 innerText('startdot', event.latLng);
                 var marker = new google.maps.Marker({
@@ -100,6 +107,7 @@ export default class GidonisMap {
                         label: '',
                         map: this.map,
                     });
+                marker.selectedFirst = true;
                 markers.push(marker)
                 routeRequest.origin.x = event.latLng.lat()
                 routeRequest.origin.y = event.latLng.lng()
@@ -111,6 +119,11 @@ export default class GidonisMap {
         secondDot.onclick = () => {
             this.map.addListener('click',(event) => {
                 google.maps.event.clearListeners(this.map, 'click');
+                var toHide = markers.filter(marker => marker.selectedSecond)
+                
+                if(toHide.length ) {
+                    toHide.forEach(marker => marker.setMap(null))
+                }
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
 
                 innerText('enddot', event.latLng);  
@@ -120,6 +133,7 @@ export default class GidonisMap {
                         label: '',
                         map: this.map,
                     });
+                marker.selectedSecond = true;
                 markers.push(marker)
                 routeRequest.destination.x = event.latLng.lat()
                 routeRequest.destination.y = event.latLng.lng()
@@ -133,10 +147,16 @@ export default class GidonisMap {
               markers[i].setMap(null);
             }
             const rawGeoPoints = await utils.getGeoRoute(routeRequest)
-            
+            if(rawGeoPoints.length == 0)
+            {
+                alert('Не удалось построить маршрут')
+            }
+            else
+            {
             const geoRoute = new Route({rawPoints: rawGeoPoints})
             
             await this.drawRoute(geoRoute)
+            }
         }
         
         
