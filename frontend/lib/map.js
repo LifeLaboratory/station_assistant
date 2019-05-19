@@ -17,7 +17,7 @@ export default class GidonisMap {
         this.directionsService = new google.maps.DirectionsService()
         this.directionsDisplay = new google.maps.DirectionsRenderer()
 
-        const routeRequest = {
+        var routeRequest = {
             origin: {
                 x: 55.023013,
                 y: 82.922431
@@ -35,6 +35,7 @@ export default class GidonisMap {
         const geoRoute = new Route({rawPoints: rawGeoPoints, google})
 
         this.map = new google.maps.Map(document.getElementById("map"), {zoom: 4, center: new LatLng(routeRequest.origin.x, routeRequest.origin.y)})
+        
         createMarker.onclick = () => {
             this.map.addListener('click',(event) => {
                 var objSel = document.getElementById("type");
@@ -73,6 +74,15 @@ export default class GidonisMap {
         firstDot.onclick = () => {
             this.map.addListener('click',(event) => {
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
+                
+                new google.maps.Marker({
+                        title: document.getElementById('name').value,
+                        position: new LatLng(event.latLng.lat(), event.latLng.lng()), 
+                        label: '',
+                        map: this.map,
+                    });
+                routeRequest.origin.x = event.latLng.lat()
+                routeRequest.origin.y = event.latLng.lng()
                 document.getElementById('firstDot').style.background = 'green'
         })
     }
@@ -81,11 +91,19 @@ export default class GidonisMap {
         secondDot.onclick = () => {
             this.map.addListener('click',(event) => {
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
+                new google.maps.Marker({
+                        title: document.getElementById('name').value,
+                        position: new LatLng(event.latLng.lat(), event.latLng.lng()), 
+                        label: '',
+                        map: this.map,
+                    });
+                routeRequest.destination.x = event.latLng.lat()
+                routeRequest.destination.y = event.latLng.lng()
                 document.getElementById('secondDot').style.background = 'green'
                 
         })
     }
-
+        
         await this.drawRoute(geoRoute)
     }
 
