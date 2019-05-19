@@ -1,0 +1,36 @@
+$main-font: 'Montserrat', sans-serif;
+
+$accident-color: #ff9e67;
+$accident-color-hover: #fc9256;
+$extra-color: #db4437;
+$extra-color-hover: #d1594e;
+
+$block-bg-color: #ffffff;
+$head-bg-color: #fef7ef;
+
+$default-transition-time: .15s;
+
+@mixin default-btn {
+  margin-bottom: 45px;
+  border: none;
+  line-height: 50px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  background-color: $accident-color;
+  color: #fff;
+  transition: background-color $default-transition-time;
+
+  &:hover {
+    background-color: $accident-color-hover;
+    cursor: pointer;
+  }
+
+  &.red {
+    background-color: $extra-color;
+
+    &:hover {
+      background-color: $extra-color-hover;
+    }
+  }
+}

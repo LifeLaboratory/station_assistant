@@ -1,0 +1,24 @@
+@import "mixins";
+@import "route-menu";
+@import "map";
+@import "form-items";
+@import "points-list";
+@import "point-menu";
+@import "tooltip";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap&subset=cyrillic,cyrillic-ext');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $main-font;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.disabled {
+  display: none !important;
+}
