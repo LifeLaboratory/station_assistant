@@ -47,37 +47,17 @@
         </div>        
         <div class="points-list route-menu__points-list ">
             <div class="points-list__item">
-                <span>Начальная точка</span>
+                <span id="startdot">Начальная точка</span>
 
-                <div class="tooltip">
-                    Мы решили прикинуться бомжами, проникнуть в самое ядро этой, с позволения сказать, движухи и на собственной шкуре
-                    испытать все радости и невзгоды жизни рядового привокзального маргинала.
-                </div>
             </div>
             <div class="points-list__item">
-                <span>Памятник клавиатуре</span>
-            </div>
-            <div class="points-list__item">
-                <span>Дом актеров</span>
+                <span id="enddot">Памятник клавиатуре</span>
             </div>
         </div>
 
-        <div class="route-menu__settings">
-            <label class="checkbox">
-                <input type="checkbox"/>
-                <i></i>
-                <span>Дополнить маршрут</span>
-            </label>
-            <label class="checkbox">
-                <input type="checkbox"/>
-                <i></i>
-                <span>Вернуться обратно</span>
-            </label>
-        </div>
+        
 
-        <div class="route-menu__time">
-            Займет времени <span class="hour">2</span> <span class="minutes">30</span>
-        </div>
+
 
         <button class="route-menu__submit-btn">Построить маршрут</button>
     </div>
@@ -112,7 +92,7 @@
         </div>
     </div>
 
-    <buton class="add-point-btn" id="createMarker">Добавить точку</buton>
+<buton class="add-point-btn" id="createMarker" style="display: none;">Добавить точку</buton>
 
     </body>
     </html>

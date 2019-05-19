@@ -31,13 +31,15 @@ export default class GidonisMap {
         }
 
         const rawGeoPoints = await utils.getGeoRoute(routeRequest)
-
+        var geocoder = new google.maps.Geocoder();
         const geoRoute = new Route({rawPoints: rawGeoPoints, google})
 
         this.map = new google.maps.Map(document.getElementById("map"), {zoom: 4, center: new LatLng(routeRequest.origin.x, routeRequest.origin.y)})
         
         createMarker.onclick = () => {
+            document.getElementById('createMarker').style.background = 'aqua'
             this.map.addListener('click',(event) => {
+                document.getElementById('createMarker').style.background = '#ff9e67'
                 var objSel = document.getElementById("type");
                 fetch('http://90.189.168.29:13452/geo_types')
                     .then((res) => {
@@ -69,12 +71,27 @@ export default class GidonisMap {
 
         closeMarker.onclick = () => {
             Marker.closePopup();
+            this.map.event.clearListeners(this.map, 'click');
+        }
+
+
+        function innerText(id, lt){
+             geocoder.geocode({
+                    'latLng': lt
+                  }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      if (results[0]) {
+                        document.getElementById(id).textContent = ''+results[0].address_components[1].short_name + ' ' + results[0].address_components[0].short_name;
+                      }
+                    }
+                  });
         }
 
         firstDot.onclick = () => {
             this.map.addListener('click',(event) => {
+                google.maps.event.clearListeners(this.map, 'click');
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
-                
+                innerText('startdot', event.latLng);
                 new google.maps.Marker({
                         title: document.getElementById('name').value,
                         position: new LatLng(event.latLng.lat(), event.latLng.lng()), 
@@ -90,7 +107,9 @@ export default class GidonisMap {
 
         secondDot.onclick = () => {
             this.map.addListener('click',(event) => {
+                google.maps.event.clearListeners(this.map, 'click');
                 const geodata = [event.latLng.lat(), event.latLng.lng()];
+                innerText('enddot', event.latLng);
                 new google.maps.Marker({
                         title: document.getElementById('name').value,
                         position: new LatLng(event.latLng.lat(), event.latLng.lng()), 
