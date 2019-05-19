@@ -38,6 +38,7 @@ export default class GidonisMap {
         
         createMarker.onclick = () => {
             document.getElementById('createMarker').style.background = 'aqua'
+            alert('Выберите место на карте, которое хотите добавить, и нажмите туда')
             this.map.addListener('click',(event) => {
                 google.maps.event.clearListeners(this.map, 'click');
                 document.getElementById('createMarker').style.background = '#ff9e67'
@@ -89,7 +90,7 @@ export default class GidonisMap {
         closeMarker.onclick = () => {
             Marker.closePopup();
         }
-        
+        }
         var markers = []
         firstDot.onclick = () => {
             this.map.addListener('click',(event) => {
