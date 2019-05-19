@@ -53,8 +53,15 @@ export default class GidonisMap {
                 document.getElementsByClassName('popup')[0].style.display = "block";
                 submitMarker.onclick = () => {
                     Marker.addMarker(geodata[0], geodata[1], document.getElementById('type').value, document.getElementById('name').value, document.getElementById('about').value, document.getElementById('date').value+" "+document.getElementById('time').value, document.getElementById('timeLenght').value, document.getElementById('timeNoLimit').checked )
-                    
-                 }
+                    document.getElementsByClassName('popup')[0].style.display = "none";
+                    var ur = {lat: geodata[0], lng: geodata[1]};
+                    var marker =  new google.maps.Marker({
+                        title: '1',
+                        position: ur, 
+                        label: '',
+                        map: this.map,
+                    });
+                }
                 
             })
         }

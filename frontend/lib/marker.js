@@ -3,6 +3,7 @@ export default class Marker {
 	static closePopup(){
 		document.getElementsByClassName('popup')[0].style.display = 'none';
 	}
+
 	static addMarker(x, y, type, name, description, datetime, timelenght, nolimit){
 		if(nolimit){
 			datetime = "infinity"
@@ -24,7 +25,6 @@ export default class Marker {
 					"rating": 100
 				});
 				xhr.send(data);
-				addStaticMarker(document.getElementById('location').value,document.getElementById('map').value)
 			}else{
 				alert("Заполните все поля");
 				
