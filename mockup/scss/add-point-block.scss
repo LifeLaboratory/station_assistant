@@ -1,0 +1,30 @@
+@import "mixins";
+
+.add-point-block {
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #ffffff;
+  border-radius: 4px;
+  width: 350px;
+  padding: 0 $side-offset;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+    &__label {
+      margin-bottom: 6px;
+    }
+
+  &__header {
+    margin: 0 $side-offset-minus;
+    background-color: $head-bg-color;
+    font-size: 24px;
+    padding: 16px $side-offset;
+  }
+
+  &__form {
+    margin-top: 10px;
+  }
+}

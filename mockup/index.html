@@ -1,78 +1,111 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="scss/main.css">
-</head>
-<body>
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+              integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <link rel="stylesheet" href="scss/main.css">
+    </head>
+    <body>
 
-<img class="map" src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg"/>
+    <img class="map" src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg"/>
 
-<div class="point-menu disabled">
-    <div class="point-menu__header">Движуха</div>
-    <div class="point-menu__description">
-        Мы решили прикинуться бомжами, проникнуть в самое ядро этой, с позволения сказать, движухи и на собственной
-        шкуре испытать все радости и невзгоды жизни рядового привокзального маргинала.
+    <div class="point-menu disabled">
+        <div class="point-menu__header">Движуха</div>
+        <div class="point-menu__description">
+            Мы решили прикинуться бомжами, проникнуть в самое ядро этой, с позволения сказать, движухи и на собственной
+            шкуре испытать все радости и невзгоды жизни рядового привокзального маргинала.
+        </div>
+
+        <button class="point-menu__button">Добавить в маршрут</button>
     </div>
 
-    <button class="point-menu__button">Добавить в маршрут</button>
-</div>
+    <div class="point-menu random disabled">
+        <button class="point-menu__button">Начальная точка</button>
+        <button class="point-menu__button">Конечная точка</button>
+    </div>
 
-<div class="point-menu random disabled">
-    <button class="point-menu__button">Начальная точка</button>
-    <button class="point-menu__button">Конечная точка</button>
-</div>
+    <div class="tooltip disabled">
+        Мы решили прикинуться бомжами, проникнуть в самое ядро этой, с позволения сказать, движухи и на собственной шкуре
+        испытать все радости и невзгоды жизни рядового привокзального маргинала.
+    </div>
 
-<div class="tooltip disabled">
-    Мы решили прикинуться бомжами, проникнуть в самое ядро этой, с позволения сказать, движухи и на собственной шкуре
-    испытать все радости и невзгоды жизни рядового привокзального маргинала.
-</div>
+    <div class="route-menu active">
+        <div class="route-menu__header">Меню маршрута</div>
 
-<div class="route-menu active">
-    <div class="route-menu__header">Меню маршрута</div>
+        <div class="points-list route-menu__points-list ">
+            <div class="points-list__item">
+                <span>Начальная точка</span>
 
-    <div class="points-list route-menu__points-list ">
-        <div class="points-list__item">
-            <span>Начальная точка</span>
-
-            <div class="tooltip">
-                Мы решили прикинуться бомжами, проникнуть в самое ядро этой, с позволения сказать, движухи и на собственной шкуре
-                испытать все радости и невзгоды жизни рядового привокзального маргинала.
+                <div class="tooltip">
+                    Мы решили прикинуться бомжами, проникнуть в самое ядро этой, с позволения сказать, движухи и на собственной шкуре
+                    испытать все радости и невзгоды жизни рядового привокзального маргинала.
+                </div>
+            </div>
+            <div class="points-list__item">
+                <span>Памятник клавиатуре</span>
+            </div>
+            <div class="points-list__item">
+                <span>Дом актеров</span>
             </div>
         </div>
-        <div class="points-list__item">
-            <span>Памятник</span>
+
+        <div class="route-menu__settings">
+            <label class="checkbox">
+                <input type="checkbox"/>
+                <i></i>
+                <span>Дополнить маршрут</span>
+            </label>
+            <label class="checkbox">
+                <input type="checkbox"/>
+                <i></i>
+                <span>Вернуться обратно</span>
+            </label>
         </div>
-        <div class="points-list__item">
-            <span>Дом актеров</span>
+
+        <div class="route-menu__time">
+            Займет времени <span class="hour">2</span> <span class="minutes">30</span>
         </div>
+
+        <button class="route-menu__submit-btn">Построить маршрут</button>
     </div>
 
-    <div class="route-menu__settings">
-        <label class="checkbox">
-            <input type="checkbox"/>
-            <i></i>
-            <span>Дополнить маршрут</span>
-        </label>
-        <label class="checkbox">
-            <input type="checkbox"/>
-            <i></i>
-            <span>Вернуться обратно</span>
-        </label>
+    <div class="add-point-block route-menu__add-point-block">
+        <div class="add-point-block__header">Добавить точку</div>
+        <form class="add-point-form add-point-block__form">
+            <input type="text" placeholder="Название">
+            <textarea name="" id="" placeholder="Описание"></textarea>
+
+            <select name="" id="">
+                <option value="" selected disabled hidden>Выберите категорию</option>
+                <option value="">Категория 1</option>
+                <option value="">Категория 2</option>
+                <option value="">Категория 3</option>
+            </select>
+            <input type="text" placeholder="Время проведения"/>
+
+            <div class="add-point-block__label">Время окончания</div>
+            <input required type="time" placeholder="Время окончания"/>
+            <div class="add-point-block__label">Дата окончания</div>
+            <input required type="date" placeholder="Дата окончания"/>
+
+            <label class="checkbox">
+                <input type="checkbox"/>
+                <i></i>
+                <span>Постоянно активная</span>
+            </label>
+
+
+
+            <button class="add-point-form__submit-btn" type="submit">Добавить точку</button>
+        </form>
     </div>
 
-    <div class="route-menu__time">
-        Займет времени <span class="hour">2</span> <span class="minutes">30</span>
-    </div>
+    <buton class="add-point-btn">Добавить точку</buton>
 
-    <button class="route-menu__submit-btn">Построить маршрут</button>
-</div>
-
-</body>
-</html>
+    </body>
+    </html>

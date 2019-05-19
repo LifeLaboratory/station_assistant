@@ -41,3 +41,13 @@
     }
   }
 }
+
+input[type=text], input[type=date], input[type=time], select, textarea {
+  padding: 5px 10px;
+  border: 1px solid #805136;
+  border-radius: 4px;
+}
+
+input[type=text], input[type=date], input[type=time], select {
+  height: 30px;
+}

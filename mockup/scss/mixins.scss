@@ -10,6 +10,10 @@ $head-bg-color: #fef7ef;
 
 $default-transition-time: .15s;
 
+$side-offset: 20px;
+$side-offset-minus: -$side-offset;
+
+
 @mixin default-btn {
   margin-bottom: 45px;
   border: none;
@@ -20,6 +24,7 @@ $default-transition-time: .15s;
   background-color: $accident-color;
   color: #fff;
   transition: background-color $default-transition-time;
+  text-align: center;
 
   &:hover {
     background-color: $accident-color-hover;

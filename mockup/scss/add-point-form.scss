@@ -1,0 +1,29 @@
+@import "mixins";
+
+.add-point-form {
+  display: flex;
+  flex-direction: column;
+
+  select, input, .checkbox, textarea {
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  textarea {
+    height: 100px;
+  }
+
+  &__submit-btn {
+    @include default-btn();
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}

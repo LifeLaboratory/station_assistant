@@ -5,6 +5,8 @@
 @import "points-list";
 @import "point-menu";
 @import "tooltip";
+@import "add-point-block";
+@import "add-point-form";
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap&subset=cyrillic,cyrillic-ext');
 
@@ -21,4 +23,13 @@ body {
 
 .disabled {
   display: none !important;
+}
+
+.add-point-btn {
+@include default-btn();
+  width: 200px;
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  margin-bottom: 0;
 }
