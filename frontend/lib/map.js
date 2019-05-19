@@ -70,9 +70,24 @@ export default class GidonisMap {
             Marker.closePopup();
         }
 
-        await this.drawRoute(geoRoute)
+        firstDot.onclick = () => {
+            this.map.addListener('click',(event) => {
+                const geodata = [event.latLng.lat(), event.latLng.lng()];
+                document.getElementById('firstDot').style.background = 'green'
+        })
+    }
+        
+
+        secondDot.onclick = () => {
+            this.map.addListener('click',(event) => {
+                const geodata = [event.latLng.lat(), event.latLng.lng()];
+                document.getElementById('secondDot').style.background = 'green'
+                
+        })
     }
 
+        await this.drawRoute(geoRoute)
+    }
 
     async drawRoute(route) {
         return new Promise((resolve, reject) => {
