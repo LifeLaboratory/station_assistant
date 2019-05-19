@@ -147,16 +147,18 @@ export default class GidonisMap {
             for (var i = 0; i < markers.length; i++) {
               markers[i].setMap(null);
             }
+            document.getElementById('preloader').style.display = inline
             const rawGeoPoints = await utils.getGeoRoute(routeRequest)
             if(rawGeoPoints.length == 0)
             {
-                alert('Не удалось построить маршрут')
+                alert('Не удалось построить маршрут. Попробуйте построить маршрут ближе к центру.')
             }
             else
             {
             const geoRoute = new Route({rawPoints: rawGeoPoints})
             
             await this.drawRoute(geoRoute)
+            document.getElementById('preloader').style.display = none
             }
         }
         
